@@ -22,10 +22,15 @@ namespace Sample
         // this is our syntax for tests
         /// <summary> Events that consistute aggregate history</summary>
         public IList<IEvent> Given;
+
         /// <summary> aggregate method that we call </summary>
         public Expression<Action<Customer>> When;
+
         /// <summary> Assign here events that we expect to be published </summary>
-        public IList<IEvent> Then { set { AssertCustomerGWT(Given, When, value); } }
+        public IList<IEvent> Then
+        {
+            set { AssertCustomerGWT(Given, When, value); }
+        }
 
 
         public Expression<Predicate<Exception>> ThenException
@@ -37,15 +42,15 @@ namespace Sample
                     ExecCustomer(Given, When);
                     Assert.Fail("Expected exception: " + value);
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     Console.WriteLine("Expect exception: " + value);
                     if (!value.Compile()(ex))
                         throw;
                 }
             }
-        } 
-        
+        }
+
         [SetUp]
         public void Setup()
         {
@@ -56,19 +61,21 @@ namespace Sample
 
         public readonly IEvent[] NoEvents = new IEvent[0];
 
-        static void AssertCustomerGWT(ICollection<IEvent> given, Expression<Action<Customer>> when, ICollection<IEvent> then)
+        static void AssertCustomerGWT(ICollection<IEvent> given, Expression<Action<Customer>> when,
+            ICollection<IEvent> then)
         {
             var changes = ExecCustomer(given, when);
 
-            if (then.Count ==0) Console.WriteLine("Expect no events");
-            else foreach (var @event in then)
-            {
-                Console.WriteLine("Expect: " + @event);
-            }
+            if (then.Count == 0) Console.WriteLine("Expect no events");
+            else
+                foreach (var @event in then)
+                {
+                    Console.WriteLine("Expect: " + @event);
+                }
 
             AssertEquality(then.ToArray(), changes.ToArray());
         }
-        
+
 
         static IEnumerable<IEvent> ExecCustomer(ICollection<IEvent> given, Expression<Action<Customer>> when)
         {
@@ -110,7 +117,8 @@ namespace Sample
                 expected.Select(s => s.ToString()).ToArray(),
                 actual.Select(s => s.ToString()).ToArray());
 
-            CollectionAssert.AreEqual(expectedBytes, actualBytes, "Expected events differ from actual, but differences are not represented in ToString()");
+            CollectionAssert.AreEqual(expectedBytes, actualBytes,
+                "Expected events differ from actual, but differences are not represented in ToString()");
         }
 
         static byte[] SerializeEventsToBytes(IEvent[] actual)
@@ -148,5 +156,4 @@ namespace Sample
             return new CurrencyAmount(_substitute, currency);
         }
     }
-
 }

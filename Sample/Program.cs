@@ -14,7 +14,7 @@ namespace Sample
         {
             if (File.Exists("Readme.md"))
                 Console.WriteLine(File.ReadAllText("Readme.md"));
-            
+
             // persistence
             var store = CreateFileStoreForTesting();
             var events = new EventStore(store);
@@ -26,10 +26,10 @@ namespace Sample
             server.Handlers.Add(new LoggingWrapper(new CustomerApplicationService(events, pricing)));
 
             // send some sample commands
-            server.Dispatch(new CreateCustomer { Id = new CustomerId(12), Name = "Lokad", Currency = Currency.Eur});
-            server.Dispatch(new RenameCustomer { Id = new CustomerId(12), NewName = "Lokad SAS"});
-            server.Dispatch(new ChargeCustomer { Id = new CustomerId(12), Amount = 20m.Eur(), Name = "Forecasting"});
-            
+            server.Dispatch(new CreateCustomer {Id = new CustomerId(12), Name = "Lokad", Currency = Currency.Eur});
+            server.Dispatch(new RenameCustomer {Id = new CustomerId(12), NewName = "Lokad SAS"});
+            server.Dispatch(new ChargeCustomer {Id = new CustomerId(12), Amount = 20m.Eur(), Name = "Forecasting"});
+
             Console.WriteLine("Press any key to exit");
             Console.ReadKey(true);
         }
@@ -41,6 +41,7 @@ namespace Sample
             store.Initialize();
             return store;
         }
+
         static IAppendOnlyStore CreateFileStoreForTesting()
         {
             var combine = Path.Combine(Directory.GetCurrentDirectory(), "store");
@@ -70,7 +71,7 @@ namespace Sample
                 }
             }
 
-            public readonly IList<IApplicationService> Handlers = new List<IApplicationService>(); 
+            public readonly IList<IApplicationService> Handlers = new List<IApplicationService>();
         }
     }
 }

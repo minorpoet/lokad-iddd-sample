@@ -1,12 +1,9 @@
-﻿#region (c) 2012-2012 Lokad - New BSD License 
-
-// Copyright (c) Lokad 2012-2012, http://www.lokad.com
-// This code is released as Open Source under the terms of the New BSD Licence
-
-#endregion
-
-namespace Sample
+﻿namespace Sample
 {
+    /// <summary>
+    /// Interface for the application service, which can handle multiple commands.
+    /// App Server can have any number of application services 
+    /// </summary>
     public interface IApplicationService
     {
         void Execute(ICommand cmd);
@@ -16,6 +13,6 @@ namespace Sample
     public interface IEvent {}
 
     public interface ICommand {}
-
+    
     public interface IIdentity {}
 }

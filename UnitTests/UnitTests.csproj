@@ -8,7 +8,7 @@
     <ProjectGuid>{EE57197B-B092-4309-A650-FC8FF453070E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>UnitTests</RootNamespace>
+    <RootNamespace>Sample</RootNamespace>
     <AssemblyName>UnitTests</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -38,8 +38,10 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="when_charge_customer.cs" />
     <Compile Include="when_create_customer.cs" />
-    <Compile Include="customer_spec.cs" />
+    <Compile Include="framework.cs" />
+    <Compile Include="when_rename_customer.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />

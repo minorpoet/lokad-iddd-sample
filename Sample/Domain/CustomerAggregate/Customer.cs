@@ -8,8 +8,6 @@ namespace Sample.Domain
         public readonly IList<IEvent> Changes = new List<IEvent>();
         readonly CustomerState _state;
 
-        
-
 
         public Customer(IEnumerable<IEvent> events)
         {
@@ -41,7 +39,7 @@ namespace Sample.Domain
             if (bonus.Amount > 0)
                 AddPayment("Welcome bonus", bonus, utc);
         }
-        public void Rename(string name)
+        public void Rename(string name, DateTime dateTime)
         {
             if (_state.Name == name)
                 return;
@@ -50,7 +48,7 @@ namespace Sample.Domain
                     Name = name,
                     Id = _state.Id,
                     OldName = _state.Name,
-                    Renamed = DateTime.UtcNow
+                    Renamed = dateTime
                 });
         }
 
@@ -90,8 +88,10 @@ namespace Sample.Domain
                 });
         }
 
-        public void Charge(string name, CurrencyAmount amount)
+        public void Charge(string name, CurrencyAmount amount, DateTime time)
         {
+            if (_state.Currency == Currency.None)
+                throw new InvalidOperationException("Customer currency was not assigned!");
             Apply(new CustomerChargeAdded()
                 {
                     Id = _state.Id,
@@ -99,7 +99,7 @@ namespace Sample.Domain
                     NewBalance = _state.Balance - amount,
                     ChargeName = name,
                     Transaction = _state.MaxTransactionId + 1,
-                    TimeUtc = DateTime.UtcNow
+                    TimeUtc = time
                 });
         }
     }

@@ -25,7 +25,7 @@ namespace Sample.Domain
 
         public void When(RenameCustomer c)
         {
-            Update(c.Id, a=> a.Rename(c.NewName));
+            Update(c.Id, a=> a.Rename(c.NewName, DateTime.UtcNow));
         }
 
         public void When(AddCustomerPayment c)
@@ -35,7 +35,7 @@ namespace Sample.Domain
 
         public void When(ChargeCustomer c)
         {
-            Update(c.Id, a => a.Charge(c.Name, c.Amount));
+            Update(c.Id, a => a.Charge(c.Name, c.Amount, DateTime.UtcNow));
         }
 
         public void When(LockCustomerForAccountOverdraft c)

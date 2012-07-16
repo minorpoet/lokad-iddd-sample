@@ -1,11 +1,10 @@
 ﻿using System;
 using NUnit.Framework;
-using Sample;
 using Sample.Domain;
 
-namespace UnitTests
+namespace Sample
 {
-    public class when_create_customer : customer_spec
+    public class when_create_customer : customer_specs
     {
         [Test]
         public void given_new_customer_and_bonus()
@@ -21,7 +20,7 @@ namespace UnitTests
                 Currency.Eur, pricing, dateTime);
 
             // expectations
-            Expect = new IEvent[]
+            Then = new IEvent[]
                 {
                     new CustomerCreated
                         {
@@ -55,7 +54,7 @@ namespace UnitTests
                 Currency.Rur, pricing, new DateTime(2012, 07, 16));
 
             // expectations
-            Expect = new IEvent[]
+            Then = new IEvent[]
                 {
                     new CustomerCreated()
                         {
@@ -65,30 +64,6 @@ namespace UnitTests
                             Created = new DateTime(2012, 07, 16)
                         },
                 };
-        }
-    }
-
-    /// <summary>
-    /// This simple class allows our tests to stay clean and decopled
-    /// from complicated mock frameworks
-    /// </summary>
-    class TestPricingService : IPricingService
-    {
-        readonly decimal _substitute;
-
-        public TestPricingService(decimal substitute)
-        {
-            _substitute = substitute;
-        }
-
-        public CurrencyAmount GetOverdraftThreshold(Currency currency)
-        {
-            return new CurrencyAmount(_substitute, currency);
-        }
-
-        public CurrencyAmount GetWelcomeBonus(Currency currency)
-        {
-            return new CurrencyAmount(_substitute, currency);
         }
     }
 }

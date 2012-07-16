@@ -1,15 +1,15 @@
 DRAFT! sample code for IDDD Book 
 ================================
 
-This is .NET Sample Project to accompany Event Sourcing materials 
-from IDDD Book by [Vaughn Vernon](http://vaughnvernon.co/).
+This is a .NET Sample Project to accompany Event Sourcing materials 
+from the book by [Vaughn Vernon](http://vaughnvernon.co/): Implementing Domain-Driven Design.
 
-Please note, that at the moment of writing this sample project is **draft**. 
-Final revision will be delivered simultaneously with the book itself.
+Please note, that at the moment of writing this sample project is . **draft**. 
+The final revision will be delivered simultaneously with the book itself.
 
 ### Contents
 
-This project includes sample domain implemented with event sourcing pattern. 
+This project includes a sample domain implemented with the event sourcing pattern. 
 Multiple persistence options are provided:
 
 * Microsoft SQL Server
@@ -27,7 +27,7 @@ $ git clone git://github.com/Lokad/lokad-iddd-sample.git
 ```
 
 
-Then, open solution in Visual Studio (ModoDevelop might also work) and
+Then, open solution in Visual Studio (MonoDevelop might also work) and
 run the project. The project is auto-configured to use file storage by default,
 and cleans it on every start.
 
@@ -48,8 +48,8 @@ Command: Charge 20 EUR - 'Forecasting'
 
 Then, you can dive into the code by starting with `Domain` folder in this solution.
 
-You can also try plugging in other types of stores. Each store requires connection string 
-and will auto-create all required resources automatically.
+You can also try plugging in other types of event stores. Each event store requires 
+connection string and will auto-create all required resources automatically.
 
 ### Want More?
 
@@ -61,9 +61,11 @@ If you want more details, here's what you can do next:
 * Follow [@VaughnVernon](https://twitter.com/#!/VaughnVernon).
 * Follow [@abdullin](https://twitter.com/#!/abdullin).
 
-If you have any questions, please feel free to ask contributors.
+If you have any questions, please feel free to ask the contributors.
 
 ### Authors and Contributors
 
 * [Vaughn Vernon](http://vaughnvernon.co/), Book author and reviewer
 * [Rinat Abdullin](http://abdullin.com), A+ES text and sample project. Tech Leader at [Lokad](http://www.lokad.com/), Big Data Analytics for Retail.
+
+Plus, there always is a [DDD/CQRS Google Group](https://groups.google.com/forum/?fromgroups#!forum/dddcqrs)

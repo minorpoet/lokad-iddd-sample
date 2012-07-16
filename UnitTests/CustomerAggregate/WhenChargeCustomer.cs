@@ -16,7 +16,7 @@ namespace Sample.CustomerAggregate
 
             When = c => c.Charge("charge", 1m.Eur(), DateTime.UtcNow);
 
-            ThenEx = ex => ex.Message == "Customer currency was not assigned!";
+            ThenException = ex => ex.Message == "Customer currency was not assigned!";
         }
         [Test]
         public void given_existing_customer_with_balance()

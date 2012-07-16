@@ -28,7 +28,7 @@ namespace Sample
         public IList<IEvent> Then { set { AssertCustomerGWT(Given, When, value); } }
 
 
-        public Expression<Predicate<Exception>> ThenEx
+        public Expression<Predicate<Exception>> ThenException
         {
             set
             {

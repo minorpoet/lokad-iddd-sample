@@ -22,14 +22,15 @@ namespace Sample
             // various domain services
             var pricing = new PricingService();
 
-            var server = new Server();
+            var server = new ApplicationServer();
             server.Handlers.Add(new LoggingWrapper(new CustomerApplicationService(events, pricing)));
 
+            // send some sample commands
             server.Dispatch(new CreateCustomer { Id = new CustomerId(12), Name = "Lokad", Currency = Currency.Eur});
             server.Dispatch(new RenameCustomer { Id = new CustomerId(12), NewName = "Lokad SAS"});
             server.Dispatch(new ChargeCustomer { Id = new CustomerId(12), Amount = 20m.Eur(), Name = "Forecasting"});
             
-            Console.WriteLine("Press any key to continue");
+            Console.WriteLine("Press any key to exit");
             Console.ReadKey(true);
         }
 
@@ -42,9 +43,6 @@ namespace Sample
         }
         static IAppendOnlyStore CreateFileStoreForTesting()
         {
-            {
-                // reset the store, since we are testing
-            }
             var combine = Path.Combine(Directory.GetCurrentDirectory(), "store");
             if (Directory.Exists(combine))
             {
@@ -59,7 +57,10 @@ namespace Sample
             return store;
         }
 
-        public sealed class Server
+        /// <summary>
+        /// This is a simplified representation of real application server. 
+        /// In production it is wired to messaging and/or services infrastructure.</summary>
+        public sealed class ApplicationServer
         {
             public void Dispatch(ICommand cmd)
             {

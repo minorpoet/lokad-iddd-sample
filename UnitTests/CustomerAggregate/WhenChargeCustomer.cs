@@ -5,7 +5,8 @@ using Sample.Domain;
 namespace Sample.CustomerAggregate
 {
     /// <summary>
-    /// Unit tests for <see cref="Customer.Charge"/>
+    /// Given-when-then unit tests for <see cref="Customer.Charge"/>.
+    /// See Readme file in folders above for explanations.
     /// </summary>
     public class WhenChargeCustomer : customer_specs
     {
@@ -13,9 +14,7 @@ namespace Sample.CustomerAggregate
         public void given_non_existent_customer()
         {
             Given = NoEvents;
-
             When = c => c.Charge("charge", 1m.Eur(), DateTime.UtcNow);
-
             ThenException = ex => ex.Message == "Customer currency was not assigned!";
         }
         [Test]

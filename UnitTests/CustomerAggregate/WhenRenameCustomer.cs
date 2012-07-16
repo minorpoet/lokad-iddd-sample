@@ -4,6 +4,10 @@ using Sample.Domain;
 
 namespace Sample.CustomerAggregate
 {
+    /// <summary>
+    /// Given-when-then unit tests for <see cref="Customer.Rename"/>.
+    /// See Readme file in folders above for explanations.
+    /// </summary>
     public class WhenRenameCustomer : customer_specs
     {
         [Test]

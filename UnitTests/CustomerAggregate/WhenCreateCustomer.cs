@@ -6,7 +6,8 @@ namespace Sample.CustomerAggregate
 {
     /// <summary>
     /// Given-when-then unit tests for <see cref="Customer.Create"/>.
-    /// See Readme file in folders above for explanations.
+    /// See Readme file in folders above for explanations or
+    /// 'framework.cs' for the testing infrastructure.
     /// </summary>
     public class WhenCreateCustomer : customer_specs
     {
@@ -18,8 +19,8 @@ namespace Sample.CustomerAggregate
 
             // call
             When = customer => customer.Create(
-                new CustomerId(1), 
-                "Lokad", 
+                new CustomerId(1),
+                "Lokad",
                 Currency.Eur, pricing, new DateTime(2012, 07, 16));
 
             // expectations
@@ -32,7 +33,7 @@ namespace Sample.CustomerAggregate
                             Name = "Lokad",
                             Created = new DateTime(2012, 07, 16)
                         },
-                    new CustomerPaymentAdded()
+                    new CustomerPaymentAdded
                         {
                             Id = new CustomerId(1),
                             NewBalance = 17m.Eur(),
@@ -59,7 +60,7 @@ namespace Sample.CustomerAggregate
             // expectations
             Then = new IEvent[]
                 {
-                    new CustomerCreated()
+                    new CustomerCreated
                         {
                             Currency = Currency.Rur,
                             Id = new CustomerId(1),

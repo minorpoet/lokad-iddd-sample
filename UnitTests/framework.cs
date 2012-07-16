@@ -41,7 +41,7 @@ namespace Sample
                 {
                     Console.WriteLine("Expect exception: " + value);
                     if (!value.Compile()(ex))
-                        throw ex;
+                        throw;
                 }
             }
         } 

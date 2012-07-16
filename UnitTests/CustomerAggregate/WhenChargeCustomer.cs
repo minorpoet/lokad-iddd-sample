@@ -6,7 +6,8 @@ namespace Sample.CustomerAggregate
 {
     /// <summary>
     /// Given-when-then unit tests for <see cref="Customer.Charge"/>.
-    /// See Readme file in folders above for explanations.
+    /// See Readme file in folders above for explanations or
+    /// 'framework.cs' for the testing infrastructure.
     /// </summary>
     public class WhenChargeCustomer : customer_specs
     {
@@ -22,25 +23,25 @@ namespace Sample.CustomerAggregate
         {
             Given = new IEvent[]
                 {
-                    new CustomerCreated()
+                    new CustomerCreated
                         {
                             Id = new CustomerId(2),
                             Name = "Microsoft",
                             Currency = Currency.Eur
                         },
-                    new CustomerPaymentAdded()
+                    new CustomerPaymentAdded
                         {
                             Id = new CustomerId(2),
                             NewBalance = 1000m.Eur(),
                             Payment = 1000m.Eur(),
                             PaymentName = "Bonus",
                             Transaction = 1
-                        },
+                        }
                 };
             When = c => c.Charge("Sales forecast fee", 200m.Eur(), new DateTime(2012, 3, 2));
             Then = new IEvent[]
                 {
-                    new CustomerChargeAdded()
+                    new CustomerChargeAdded
                         {
                             Charge = 200m.Eur(),
                             ChargeName = "Sales forecast fee",
@@ -48,7 +49,7 @@ namespace Sample.CustomerAggregate
                             NewBalance = 800m.Eur(),
                             TimeUtc = new DateTime(2012, 3, 2),
                             Transaction = 2
-                        }, 
+                        } 
                 };
         }
     }

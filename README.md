@@ -1,11 +1,9 @@
-DRAFT! sample code for IDDD Book 
-================================
+Sample code for IDDD Book by Vaughn Vernon
+==========================================
+> Rinat Abdullin, 2012-07-16
 
 This is a .NET Sample Project to accompany Event Sourcing materials 
 from the book by [Vaughn Vernon](http://vaughnvernon.co/): Implementing Domain-Driven Design.
-
-Please note, that at the moment of writing this sample project is . **draft**. 
-The final revision will be delivered simultaneously with the book itself.
 
 ### Contents
 
@@ -47,6 +45,8 @@ Command: Charge 20 EUR - 'Forecasting'
 ```
 
 Then, you can dive into the code by starting with `Domain` folder in this solution.
+There also is a `UnitTests` project, which contains unit tests for the domain
+(in form of Given-When-Then specifications)
 
 You can also try plugging in other types of event stores. Each event store requires 
 connection string and will auto-create all required resources automatically.

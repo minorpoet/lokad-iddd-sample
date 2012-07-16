@@ -56,23 +56,25 @@ namespace UnitTests
 
         static void AssertEquality(IEvent[] expected, IEvent[] actual)
         {
-            bool areEqual = ToBytes(actual).SequenceEqual(ToBytes(expected));
+            var actualBytes = ToBytes(actual);
+            var expectedBytes = ToBytes(expected);
+            bool areEqual = actualBytes.SequenceEqual(expectedBytes);
             if (areEqual) return;
             CollectionAssert.AreEqual(
                 expected.Select(s => s.ToString()).ToArray(),
                 actual.Select(s => s.ToString()).ToArray());
 
-            Assert.Fail("Expected events differ from actual, but differences are not represented in ToString()");
+            CollectionAssert.AreEqual(expectedBytes, actualBytes, "Expected events differ from actual, but differences are not represented in ToString()");
 
         }
 
-        static byte[] ToBytes(IEnumerable<IEvent> actual)
+        static byte[] ToBytes(IEvent[] actual)
         {
             // this helper class transforms events to their binary representation
             BinaryFormatter formatter = new BinaryFormatter();
             using (var mem = new MemoryStream())
             {
-                formatter.Serialize(mem, actual.ToArray());
+                formatter.Serialize(mem, actual);
                 return mem.ToArray();
             }
         }

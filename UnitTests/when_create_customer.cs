@@ -14,20 +14,21 @@ namespace UnitTests
             var pricing = new TestPricingService(17m);
 
             // call
+            var dateTime = new DateTime(2012, 07, 16);
             When = customer => customer.Create(
                 new CustomerId(1), 
                 "Lokad", 
-                Currency.Eur, pricing, new DateTime(2012, 07, 16));
+                Currency.Eur, pricing, dateTime);
 
             // expectations
             Expect = new IEvent[]
                 {
-                    new CustomerCreated()
+                    new CustomerCreated
                         {
                             Currency = Currency.Eur,
                             Id = new CustomerId(1),
                             Name = "Lokad",
-                            Created = new DateTime(2012, 07, 16)
+                            Created = dateTime
                         },
                     new CustomerPaymentAdded()
                         {
@@ -36,7 +37,7 @@ namespace UnitTests
                             Transaction = 1,
                             Payment = 17m.Eur(),
                             PaymentName = "Welcome bonus",
-                            TimeUtc = new DateTime(2012, 07, 16)
+                            TimeUtc = dateTime
                         }
                 };
         }
@@ -51,14 +52,14 @@ namespace UnitTests
             When = customer => customer.Create(
                 new CustomerId(1),
                 "Lokad",
-                Currency.Eur, pricing, new DateTime(2012, 07, 16));
+                Currency.Rur, pricing, new DateTime(2012, 07, 16));
 
             // expectations
             Expect = new IEvent[]
                 {
                     new CustomerCreated()
                         {
-                            Currency = Currency.Eur,
+                            Currency = Currency.Rur,
                             Id = new CustomerId(1),
                             Name = "Lokad",
                             Created = new DateTime(2012, 07, 16)

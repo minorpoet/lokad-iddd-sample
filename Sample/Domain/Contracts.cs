@@ -3,9 +3,9 @@ using System;
 namespace Sample.Domain
 {
     [Serializable]
-    public sealed class CustomerId : IIdentity
+    public struct CustomerId : IIdentity
     {
-        public long Id { get; private set; }
+        public readonly long Id;
 
         public CustomerId(long id)
         {

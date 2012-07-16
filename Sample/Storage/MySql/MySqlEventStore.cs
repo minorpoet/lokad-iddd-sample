@@ -6,7 +6,7 @@ namespace Sample.Storage.MySql
     /// <summary>
     /// <para>This is a SQL event storage for MySQL, simplified to demonstrate 
     /// essential principles.
-    /// If you need more robust SQL implementation, check out Event Store of
+    /// If you need a more robust mySQL implementation, check out Event Store of
     /// Jonathan Oliver</para>
     /// <para>This code is frozen to match IDDD book. For latest practices see Lokad.CQRS Project</para>
     /// </summary>

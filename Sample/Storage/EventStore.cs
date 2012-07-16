@@ -81,10 +81,9 @@ namespace Sample.Storage
                 throw OptimisticConcurrencyException.Create(server.Version, e.ExpectedStreamVersion, id, server.Events);
             }
 
-            // technically there should be parallel process that queries new changes from 
-            // event store and sends them via messages. 
-            // however, for demo purposes, we'll just send them to console from here
-
+            // technically there should be a parallel process that queries new changes 
+            // from the event store and sends them via messages (avoiding 2PC problem). 
+            // however, for demo purposes, we'll just send them to the console from here
             Console.ForegroundColor = ConsoleColor.DarkGreen;
             foreach (var @event in events)
             {

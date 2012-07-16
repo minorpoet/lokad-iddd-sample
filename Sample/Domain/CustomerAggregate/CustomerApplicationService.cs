@@ -86,7 +86,7 @@ namespace Sample.Domain
             _eventStore.AppendToStream(id, stream.Version, customer.Changes);
         }
         // Sample of method that would apply simple conflict resolution.
-        // see IDDD book or Greg's videos for more in-depth explanation  
+        // see IDDD book or Greg Youn's videos for more in-depth explanation  
         void UpdateWithSimpleConflictResolution(CustomerId id, Action<Customer> execute)
         {
             while (true)

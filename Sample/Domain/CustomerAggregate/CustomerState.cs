@@ -2,9 +2,12 @@ using System.Collections.Generic;
 
 namespace Sample.Domain
 {
+    /// <summary>
+    /// This is the state of the customer aggregate.
+    /// It can be mutated only by passing events to it.
+    /// </summary>
     public class CustomerState
     {
-
         public string Name { get; private set; }
         public bool Created { get; private set; }
         public CustomerId Id { get; private set; }
@@ -55,7 +58,7 @@ namespace Sample.Domain
 
         public void Mutate(IEvent e)
         {
-            // .NET magic to call one of 'When' handlers with 
+            // .NET magic to call one of the 'When' handlers with 
             // matching signature 
             ((dynamic) this).When((dynamic)e);
         }

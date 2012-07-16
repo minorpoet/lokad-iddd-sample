@@ -20,7 +20,7 @@ namespace Sample.Domain
 
         public void When(CreateCustomer c)
         {
-            Update(c.Id, a => a.Create(c.Id,c.Name, c.Currency, _pricingService));
+            Update(c.Id, a => a.Create(c.Id,c.Name, c.Currency, _pricingService, DateTime.UtcNow));
         }
 
         public void When(RenameCustomer c)
@@ -30,7 +30,7 @@ namespace Sample.Domain
 
         public void When(AddCustomerPayment c)
         {
-            Update(c.Id, a => a.AddPayment(c.Name, c.Amount));
+            Update(c.Id, a => a.AddPayment(c.Name, c.Amount, DateTime.UtcNow));
         }
 
         public void When(ChargeCustomer c)

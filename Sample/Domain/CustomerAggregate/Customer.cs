@@ -5,9 +5,12 @@ namespace Sample.Domain
 {
     public class Customer
     {
-
         public readonly IList<IEvent> Changes = new List<IEvent>();
         readonly CustomerState _state;
+
+        
+
+
         public Customer(IEnumerable<IEvent> events)
         {
             _state = new CustomerState(events);
@@ -22,20 +25,21 @@ namespace Sample.Domain
         }
 
 
-        public void Create(CustomerId id, string name, Currency currency, IPricingService service)
+        public void Create(CustomerId id, string name, Currency currency, IPricingService service, DateTime utc)
         {
             if (_state.Created)
                 throw new InvalidOperationException("Customer was already created");
             Apply(new CustomerCreated
                 {
-                    Created = DateTime.UtcNow,
+                    Created = utc,
                     Name = name,
                     Id = id,
                     Currency = currency
                 });
 
             var bonus = service.GetWelcomeBonus(currency);
-            AddPayment("Welcome bonus", bonus);
+            if (bonus.Amount > 0)
+                AddPayment("Welcome bonus", bonus, utc);
         }
         public void Rename(string name)
         {
@@ -73,7 +77,7 @@ namespace Sample.Domain
 
         }
 
-        public void AddPayment(string name, CurrencyAmount amount)
+        public void AddPayment(string name, CurrencyAmount amount, DateTime utc)
         {
             Apply(new CustomerPaymentAdded()
                 {
@@ -82,7 +86,7 @@ namespace Sample.Domain
                     NewBalance = _state.Balance + amount,
                     PaymentName = name,
                     Transaction = _state.MaxTransactionId + 1,
-                    TimeUtc = DateTime.UtcNow
+                    TimeUtc = utc
                 });
         }
 

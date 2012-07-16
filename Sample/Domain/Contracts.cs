@@ -5,7 +5,7 @@ namespace Sample.Domain
     [Serializable]
     public sealed class CustomerId : IIdentity
     {
-        public readonly long Id;
+        public long Id { get; private set; }
 
         public CustomerId(long id)
         {

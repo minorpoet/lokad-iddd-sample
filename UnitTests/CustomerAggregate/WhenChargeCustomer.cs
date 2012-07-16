@@ -2,9 +2,12 @@ using System;
 using NUnit.Framework;
 using Sample.Domain;
 
-namespace Sample
+namespace Sample.CustomerAggregate
 {
-    public class when_charge_customer : customer_specs
+    /// <summary>
+    /// Unit tests for <see cref="Customer.Charge"/>
+    /// </summary>
+    public class WhenChargeCustomer : customer_specs
     {
         [Test]
         public void given_non_existent_customer()

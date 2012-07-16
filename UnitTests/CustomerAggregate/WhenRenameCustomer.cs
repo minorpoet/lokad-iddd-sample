@@ -2,9 +2,9 @@ using System;
 using NUnit.Framework;
 using Sample.Domain;
 
-namespace Sample
+namespace Sample.CustomerAggregate
 {
-    public class when_rename_customer : customer_specs
+    public class WhenRenameCustomer : customer_specs
     {
         [Test]
         public void given_matching_name()

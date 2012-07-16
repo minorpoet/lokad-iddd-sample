@@ -38,10 +38,10 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="when_charge_customer.cs" />
-    <Compile Include="when_create_customer.cs" />
+    <Compile Include="CustomerAggregate\WhenChargeCustomer.cs" />
+    <Compile Include="CustomerAggregate\WhenCreateCustomer.cs" />
     <Compile Include="framework.cs" />
-    <Compile Include="when_rename_customer.cs" />
+    <Compile Include="CustomerAggregate\WhenRenameCustomer.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />

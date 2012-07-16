@@ -2,9 +2,9 @@
 using NUnit.Framework;
 using Sample.Domain;
 
-namespace Sample
+namespace Sample.CustomerAggregate
 {
-    public class when_create_customer : customer_specs
+    public class WhenCreateCustomer : customer_specs
     {
         [Test]
         public void given_new_customer_and_bonus()
@@ -13,11 +13,10 @@ namespace Sample
             var pricing = new TestPricingService(17m);
 
             // call
-            var dateTime = new DateTime(2012, 07, 16);
             When = customer => customer.Create(
                 new CustomerId(1), 
                 "Lokad", 
-                Currency.Eur, pricing, dateTime);
+                Currency.Eur, pricing, new DateTime(2012, 07, 16));
 
             // expectations
             Then = new IEvent[]
@@ -27,7 +26,7 @@ namespace Sample
                             Currency = Currency.Eur,
                             Id = new CustomerId(1),
                             Name = "Lokad",
-                            Created = dateTime
+                            Created = new DateTime(2012, 07, 16)
                         },
                     new CustomerPaymentAdded()
                         {
@@ -36,7 +35,7 @@ namespace Sample
                             Transaction = 1,
                             Payment = 17m.Eur(),
                             PaymentName = "Welcome bonus",
-                            TimeUtc = dateTime
+                            TimeUtc = new DateTime(2012, 07, 16)
                         }
                 };
         }

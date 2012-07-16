@@ -43,9 +43,7 @@
     <Compile Include="framework.cs" />
     <Compile Include="CustomerAggregate\WhenRenameCustomer.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Properties\" />
-  </ItemGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\Sample\RunMe.csproj">
       <Project>{D79777B6-AFD9-4CCE-824B-98C704C00AEE}</Project>

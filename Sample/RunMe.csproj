@@ -67,9 +67,7 @@
     <Compile Include="Interfaces.cs" />
     <Compile Include="Program.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Properties\" />
-  </ItemGroup>
+
   <ItemGroup>
     <None Include="Domain\ReadMe.md" />
     <None Include="Projections\ReadMe.md" />

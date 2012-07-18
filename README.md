@@ -5,6 +5,10 @@ Sample code for IDDD Book by Vaughn Vernon
 This is a .NET Sample Project to accompany Event Sourcing materials 
 from the book by [Vaughn Vernon](http://vaughnvernon.co/): Implementing Domain-Driven Design.
 
+Event Sourcing pattern was introduced to DDD world by [Gregory Young](http://goodenoughsoftware.net/). 
+A+ES appendix in IDDD book and this sample are mainly based on his work in pushing the state of
+art in this field.
+
 ### Contents
 
 This project includes a sample domain implemented with the event sourcing pattern. 
@@ -65,7 +69,8 @@ If you have any questions, please feel free to ask the contributors.
 
 ### Authors and Contributors
 
-* [Vaughn Vernon](http://vaughnvernon.co/), Book author and reviewer
-* [Rinat Abdullin](http://abdullin.com), A+ES text and sample project. Tech Leader at [Lokad](http://www.lokad.com/), Big Data Analytics for Retail.
+* [Vaughn Vernon](http://vaughnvernon.co/), Book author and reviewer.
+* [Rinat Abdullin](http://abdullin.com), A+ES text and this sample project. Tech Leader at [Lokad](http://www.lokad.com/), Big Data Analytics for Retail.
+* [Gregory Young](http://goodenoughsoftware.net/), theory and practice of introducing Event Sourcing to Domain-Driven Design. 
 
 Plus, there always is a [DDD/CQRS Google Group](https://groups.google.com/forum/?fromgroups#!forum/dddcqrs)

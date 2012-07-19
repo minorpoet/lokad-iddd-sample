@@ -3,6 +3,17 @@ using Sample.Storage;
 
 namespace Sample.Domain
 {
+    /// <summary><para>
+    /// This is an application service within the current bounded context. 
+    /// THis specific application service contains command handlers which load
+    /// and operate a Customer aggregate. These handlers also pass required
+    /// dependencies to aggregate methods and perform conflict resolution 
+    /// </para><para>
+    /// Command handlers are usually invoked by an infrastructure of an application
+    /// server, which hosts current service. Infrastructure will be responsible
+    /// for accepting message calls (in form of web service calls or serialized
+    ///  command messages) and dispatching them to these handlers.
+    /// </para></summary>
     public sealed class CustomerApplicationService : IApplicationService
     {
         // event store for accessing event streams
@@ -86,7 +97,7 @@ namespace Sample.Domain
             _eventStore.AppendToStream(id, stream.Version, customer.Changes);
         }
         // Sample of method that would apply simple conflict resolution.
-        // see IDDD book or Greg Youn's videos for more in-depth explanation  
+        // see IDDD book or Greg Young's videos for more in-depth explanation  
         void UpdateWithSimpleConflictResolution(CustomerId id, Action<Customer> execute)
         {
             while (true)

@@ -3,11 +3,22 @@ using System.Collections.Generic;
 
 namespace Sample.Domain
 {
+    /// <summary>
+    /// <para>Implementation of customer aggregate. In production it is loaded and 
+    /// operated by an <see cref="CustomerApplicationService"/>, which loads it from
+    /// the event storage and calls appropriate methods, passing needed arguments in.</para>
+    /// <para>In test environments (e.g. in unit tests), this aggregate can be
+    /// instantiated directly.</para>
+    /// </summary>
     public class Customer
     {
+        /// <summary> List of uncommitted changes </summary>
         public readonly IList<IEvent> Changes = new List<IEvent>();
+        /// <summary>
+        /// Aggregate state, which is separate from this class in order to ensure,
+        /// that we modify it ONLY by passing events.
+        /// </summary>
         readonly CustomerState _state;
-
 
         public Customer(IEnumerable<IEvent> events)
         {

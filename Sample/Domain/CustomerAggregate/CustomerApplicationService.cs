@@ -77,7 +77,7 @@ namespace Sample.Domain
             // Step 4: commit changes to the event stream by id 
             _eventStore.AppendToStream(customerId, stream.Version, customer.Changes);
         }
-
+        
         public void Execute(ICommand cmd)
         {
             // pass command to a specific method named when
@@ -125,6 +125,7 @@ namespace Sample.Domain
                             }
                         }
                     }
+                    // 冲突决议（Event conflict resolution）： 相同类型的事件通常会相互冲突，但是不同类型的事件则很少发生冲突
                     // there are no conflicts and we can append
                     _eventStore.AppendToStream(id, ex.ActualVersion, customer.Changes);
                 }

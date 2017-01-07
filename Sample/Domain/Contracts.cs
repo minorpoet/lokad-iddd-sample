@@ -78,7 +78,7 @@ namespace Sample.Domain
         }
 
 
-        
+
         public static bool operator ==(CurrencyAmount left, CurrencyAmount right)
         {
             left.CheckCurrency(right.Currency, "==");
@@ -90,13 +90,13 @@ namespace Sample.Domain
             left.CheckCurrency(right.Currency, "!=");
             return left.Amount != right.Amount;
         }
-        public static bool operator < (CurrencyAmount left, CurrencyAmount right)
+        public static bool operator <(CurrencyAmount left, CurrencyAmount right)
         {
             left.CheckCurrency(right.Currency, "<");
             return left.Amount < right.Amount;
         }
 
-        public static CurrencyAmount operator + (CurrencyAmount left, CurrencyAmount right)
+        public static CurrencyAmount operator +(CurrencyAmount left, CurrencyAmount right)
         {
             left.CheckCurrency(right.Currency, "+");
             return new CurrencyAmount(left.Amount + right.Amount, left.Currency);
@@ -108,8 +108,8 @@ namespace Sample.Domain
         }
         public static CurrencyAmount operator -(CurrencyAmount right)
         {
-            
-            return new CurrencyAmount(- right.Amount, right.Currency);
+
+            return new CurrencyAmount(-right.Amount, right.Currency);
         }
 
         void CheckCurrency(Currency type, string operation)
@@ -152,6 +152,8 @@ namespace Sample.Domain
         public DateTime Created { get; set; }
         public CustomerId Id { get; set; }
         public Currency Currency { get; set; }
+
+        public DateTime TimeUtc { get; set; }
 
         public override string ToString()
         {
@@ -207,7 +209,7 @@ namespace Sample.Domain
 
         public override string ToString()
         {
-            return string.Format("Added '{2}' {1} | Tx {0} => {3}", 
+            return string.Format("Added '{2}' {1} | Tx {0} => {3}",
                 Transaction, Payment, PaymentName, NewBalance);
         }
     }
@@ -259,6 +261,8 @@ namespace Sample.Domain
         public CustomerId Id { get; set; }
         public string Reason { get; set; }
 
+        public DateTime TimeUtc { get; set; }
+
         public override string ToString()
         {
             return string.Format("Customer locked: {0}", Reason);
@@ -273,6 +277,8 @@ namespace Sample.Domain
         public string OldName { get; set; }
         public CustomerId Id { get; set; }
         public DateTime Renamed { get; set; }
+
+        public DateTime TimeUtc { get; set; }
 
         public override string ToString()
         {

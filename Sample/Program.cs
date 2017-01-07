@@ -5,6 +5,7 @@ using Sample.Domain;
 using Sample.Storage;
 using Sample.Storage.Files;
 using Sample.Storage.MsSql;
+using Sample.Storage.MySql;
 
 namespace Sample
 {
@@ -16,7 +17,9 @@ namespace Sample
                 Console.WriteLine(File.ReadAllText("Readme.md"));
 
             // persistence
-            var store = CreateFileStoreForTesting();
+            // var store = CreateFileStoreForTesting();
+            var store = CreateSqlStore();
+
             var events = new EventStore(store);
 
             // various domain services
@@ -26,9 +29,9 @@ namespace Sample
             server.Handlers.Add(new LoggingWrapper(new CustomerApplicationService(events, pricing)));
 
             // send some sample commands
-            server.Dispatch(new CreateCustomer {Id = new CustomerId(12), Name = "Lokad", Currency = Currency.Eur});
-            server.Dispatch(new RenameCustomer {Id = new CustomerId(12), NewName = "Lokad SAS"});
-            server.Dispatch(new ChargeCustomer {Id = new CustomerId(12), Amount = 20m.Eur(), Name = "Forecasting"});
+            server.Dispatch(new CreateCustomer { Id = new CustomerId(12), Name = "Lokad", Currency = Currency.Eur });
+            server.Dispatch(new RenameCustomer { Id = new CustomerId(12), NewName = "Lokad SAS" });
+            server.Dispatch(new ChargeCustomer { Id = new CustomerId(12), Amount = 20m.Eur(), Name = "Forecasting" });
 
             Console.WriteLine("Press any key to exit");
             Console.ReadKey(true);
@@ -36,7 +39,7 @@ namespace Sample
 
         static IAppendOnlyStore CreateSqlStore()
         {
-            var conn = "Data Source=.\\SQLExpress;Initial Catalog=lokadsalescast_samples;Integrated Security=true";
+            var conn = "Data Source = .;Initial Catalog=lokadsalescast_samples;Integrated Security=true";
             var store = new SqlAppendOnlyStore(conn);
             store.Initialize();
             return store;
@@ -71,6 +74,7 @@ namespace Sample
                 }
             }
 
+            // ¶©ÔÄÕß
             public readonly IList<IApplicationService> Handlers = new List<IApplicationService>();
         }
     }

@@ -1,4 +1,4 @@
-#region (c) 2012-2012 Lokad - New BSD License 
+#region (c) 2012-2012 Lokad - New BSD License
 
 // Copyright (c) Lokad 2012-2012, http://www.lokad.com
 // This code is released as Open Source under the terms of the New BSD Licence
@@ -11,10 +11,18 @@ using System.Runtime.Serialization;
 
 namespace Sample.Storage
 {
+    /// <summary>
+    ///  事件存储用于序列化处理和强类型，处理对象是领域事件并且负责其和字节数组的相互转换； 而IAppendOnlyStore的实现类则用于对不同的存储引擎的底层访问，处理对象是字节数组
+    /// </summary>
     public interface IEventStore
     {
+
+        // 加载事件流中的所有事件 
         EventStream LoadEventStream(IIdentity id);
+
+        // 加载事件流中的某个子集
         EventStream LoadEventStream(IIdentity id, long skipEvents, int maxCount);
+
         /// <summary>
         /// Appends events to server stream for the provided identity.
         /// </summary>
@@ -66,7 +74,7 @@ namespace Sample.Storage
         protected OptimisticConcurrencyException(
             SerializationInfo info,
             StreamingContext context)
-            : base(info, context) {}
+            : base(info, context) { }
     }
 
     /// <summary>
@@ -75,12 +83,13 @@ namespace Sample.Storage
     [Serializable]
     public class RealConcurrencyException : Exception
     {
-        public RealConcurrencyException() {}
-        public RealConcurrencyException(string message) : base(message) {}
-        public RealConcurrencyException(string message, Exception inner) : base(message, inner) {}
+        public RealConcurrencyException() { }
+        public RealConcurrencyException(string message) : base(message) { }
+        public RealConcurrencyException(string message, Exception inner) : base(message, inner) { }
 
         protected RealConcurrencyException(
             SerializationInfo info,
-            StreamingContext context) : base(info, context) {}
+            StreamingContext context)
+            : base(info, context) { }
     }
 }

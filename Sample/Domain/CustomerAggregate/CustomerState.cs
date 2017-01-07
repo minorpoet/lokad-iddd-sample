@@ -60,7 +60,7 @@ namespace Sample.Domain
         {
             // .NET magic to call one of the 'When' handlers with 
             // matching signature 
-            ((dynamic) this).When((dynamic)e);
+            this.When((dynamic)e);
         }
     }
 }

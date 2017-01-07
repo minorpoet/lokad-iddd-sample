@@ -1,4 +1,6 @@
-﻿namespace Sample
+﻿using System;
+
+namespace Sample
 {
     /// <summary>
     /// <para>Interface for the application service, which can handle multiple commands. 
@@ -12,11 +14,15 @@
     {
         void Execute(ICommand cmd);
     }
+
     /// <summary><para>
     /// Interface, which marks our events to provide some strong-typing.
     /// In real-world systems we can have more fine-grained interfaces</para> 
     /// </summary>
-    public interface IEvent { }
+    public interface IEvent
+    {
+        DateTime TimeUtc { get; set; }
+    }
 
     /// <summary>
     /// <para>Interface for commands, which we send to the application server.

@@ -63,6 +63,10 @@ namespace Sample.Domain
                 });
         }
 
+        /// <summary>
+        /// 锁定客户
+        /// </summary>
+        /// <param name="reason">原因</param>
         public void LockCustomer(string reason)
         {
             if (_state.ConsumptionLocked)
@@ -75,6 +79,11 @@ namespace Sample.Domain
                 });
         }
 
+        /// <summary>
+        /// 锁定超过可透支金额的客户
+        /// </summary>
+        /// <param name="comment">备注</param>
+        /// <param name="service">价格领域服务</param>
         public void LockForAccountOverdraft(string comment, IPricingService service)
         {
             if (_state.ManualBilling) return;

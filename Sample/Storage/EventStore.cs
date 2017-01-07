@@ -14,6 +14,7 @@ namespace Sample.Storage
     public class EventStore : IEventStore
     {
         readonly BinaryFormatter _formatter = new BinaryFormatter();
+        readonly IAppendOnlyStore _appendOnlyStore;
 
         byte[] SerializeEvent(IEvent[] e)
         {
@@ -37,7 +38,6 @@ namespace Sample.Storage
             _appendOnlyStore = appendOnlyStore;
         }
 
-        readonly IAppendOnlyStore _appendOnlyStore;
         public EventStream LoadEventStream(IIdentity id, long skip, int take)
         {
             var name = IdentityToString(id);
